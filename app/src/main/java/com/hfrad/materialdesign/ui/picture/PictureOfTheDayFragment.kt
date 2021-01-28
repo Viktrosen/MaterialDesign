@@ -20,6 +20,7 @@ import com.hfrad.materialdesign.ui.apibottom.ApiBottomActivity
 import com.hfrad.materialdesign.ui.picture.PictureOfTheDayViewModel
 import com.hfrad.materialdesign.ui.settings.SettingsFragment
 import kotlinx.android.synthetic.main.bottom_sheet_layout.*
+
 import kotlinx.android.synthetic.main.fragment_main.*
 
 class PictureOfTheDayFragment : Fragment() {
@@ -44,12 +45,12 @@ class PictureOfTheDayFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container))
-        input_layout.setEndIconOnClickListener {
+        //setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container))
+        /*input_layout.setEndIconOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW).apply {
                 data = Uri.parse("https://en.wikipedia.org/wiki/${input_edit_text.text.toString()}")
             })
-        }
+        }*/
         setBottomAppBar(view)
     }
 
@@ -76,6 +77,7 @@ class PictureOfTheDayFragment : Fragment() {
     private fun renderData(data: PictureOfTheDayData) {
         when (data) {
             is PictureOfTheDayData.Success -> {
+                var galaxyInfo:String;
                 val serverResponseData = data.serverResponseData
                 val url = serverResponseData.url
                 if (url.isNullOrEmpty()) {
@@ -83,13 +85,19 @@ class PictureOfTheDayFragment : Fragment() {
                     toast("Link is empty")
                 } else {
                     //showSuccess()
-                    image_view.load(url) {
+                    image_view?.load(url) {
                         lifecycle(this@PictureOfTheDayFragment)
                         error(R.drawable.ic_load_error_vector)
                         placeholder(R.drawable.ic_no_photo_vector)
 
-                    bottom_sheet_description_header.text = serverResponseData.title
-                    bottom_sheet_description.text = serverResponseData.explanation
+                        galaxyInfo = serverResponseData.title+"\n\n"+serverResponseData.explanation
+
+
+
+                    text_view_title.text = galaxyInfo
+                        //text_view_description.text = serverResponseData.explanation
+
+
 
                     }
                 }
