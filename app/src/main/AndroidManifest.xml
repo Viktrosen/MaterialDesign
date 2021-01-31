@@ -22,6 +22,7 @@
         </activity>
         <activity android:name=".ui.api.ApiActivity" />
         <activity android:name=".ui.apibottom.ApiBottomActivity" />
+
     </application>
 
 </manifest>
