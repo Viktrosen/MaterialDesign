@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.hfrad.materialdesign.R
 import com.hfrad.materialdesign.ui.picture.PictureOfTheDayFragment
 
-class MainActivity : AppCompatActivity() {
+open class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
