@@ -72,7 +72,7 @@ class MarsFragment : Fragment() {
             is MarsWeatherData.Success -> {
                 val serverResponseData = data.serverResponseData
                 val url = "https://avatars.mds.yandex.net/get-zen_doc/3721416/pub_5f42a8e74883df77dace8e15_5f42a91caee5d15985f8e31d/scale_1200"
-                if (url.isNullOrEmpty()) {
+                if (url.isEmpty()) {
                     //showError("Сообщение, что ссылка пустая")
                     toast("Link is empty")
                 } else {
