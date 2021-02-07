@@ -1,8 +1,15 @@
 package com.hfrad.materialdesign.ui.picture
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.SpannableStringBuilder
+import android.text.style.ForegroundColorSpan
 import android.view.*
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -90,12 +97,18 @@ class PictureOfTheDayFragment : Fragment() {
                         error(R.drawable.ic_load_error_vector)
                         placeholder(R.drawable.ic_no_photo_vector)
 
-                        galaxyInfo = serverResponseData.title+"\n\n"+serverResponseData.explanation
+                        activity?.let {
+                            text_view_title.typeface = Typeface.createFromAsset(it.assets,"NegaraserifHairlineitalic-nRgjJ.otf")
+                        }
+
+                        val spannable = SpannableStringBuilder(serverResponseData.title+"\n\n"+serverResponseData.explanation)
+                        spannable.setSpan(ForegroundColorSpan(Color.BLACK),0,spannable.length, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
 
 
 
-                    text_view_title.text = galaxyInfo
-                        //text_view_description.text = serverResponseData.explanation
+
+                    text_view_title.text = spannable
+
 
 
 

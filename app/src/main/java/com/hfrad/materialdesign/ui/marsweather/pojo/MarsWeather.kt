@@ -9,5 +9,5 @@ data class MarsWeather (
 	@SerializedName("764") val Soul764 : Soul764,
 	@SerializedName("765") val Soul765 : Soul765,
 	@SerializedName("766") val Soul766 : Soul766,
-	@SerializedName("767") val Soul767 : Soul767
+	@SerializedName("776") val Soul767 : Soul767
 )

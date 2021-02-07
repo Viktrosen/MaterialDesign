@@ -25,7 +25,7 @@ class MarsWeatherViewModel(
         liveDataForViewToObserve.value = MarsWeatherData.Loading(null)
         val apiKey: String = BuildConfig.NASA_API_KEY
         if (apiKey.isBlank()) {
-            PictureOfTheDayData.Error(Throwable("You need API key"))
+            MarsWeatherData.Error(Throwable("You need API key"))
         } else {
             retrofitImpl.getRetrofitImpl().getMarsWeather(apiKey).enqueue(object :
                 Callback<MarsWeather> {

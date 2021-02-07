@@ -12,6 +12,12 @@ import com.hfrad.materialdesign.R
 import kotlinx.android.synthetic.main.fragment_settings.*
 
 class SettingsFragment : Fragment() {
+    private var isEnabled = false
+    private var note = arrayListOf(
+            "First note",
+            "Second note",
+            "Third note"
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,11 +35,25 @@ class SettingsFragment : Fragment() {
     }
 
     fun loadListeners(){
+
+        val adapter = RecyclerNoteAdapter(note)
+        recyclerView.adapter = adapter
+
+        fabRecyclerItem.setOnClickListener {
+            adapter.appendItem(editText.text.toString())
+            editText.text.clear()
+        }
+
+
+
+        isEnabled = !isEnabled
+        if (isEnabled){
         change_theme.setOnCheckedChangeListener { button, isCheked ->
             if (isCheked){
                 Toast.makeText(context,"True",Toast.LENGTH_SHORT).show()
                 activity?.setTheme(R.style.DarkAppTheme)
-                change_theme.isChecked = isCheked
+                change_theme.isChecked = isEnabled
+
             }else {
                 Toast.makeText(context,"false",Toast.LENGTH_SHORT).show()
                 activity?.setTheme(R.style.AppTheme)
@@ -41,6 +61,8 @@ class SettingsFragment : Fragment() {
                 }
             activity?.let { recreate(it) }
 
+        }}else {
+            change_theme.setOnCheckedChangeListener{compoundButton, _ ->  }
         }
 
         change_theme.setOnClickListener(View.OnClickListener {
@@ -48,13 +70,8 @@ class SettingsFragment : Fragment() {
         })
 
 
-        chip_close.setOnCloseIconClickListener {
-            Toast.makeText(
-                context,
-                "Close is Clicked",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
+
+
     }
 
 }
