@@ -1,5 +1,6 @@
 package com.hfrad.materialdesign.ui.api
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -82,6 +83,13 @@ class MarsFragment : Fragment() {
                         error(R.drawable.ic_load_error_vector)
                         placeholder(R.drawable.ic_no_photo_vector)
 
+
+                        activity?.let {
+                            mars_weather_date.typeface = Typeface.createFromAsset(it.assets,"NegaraserifHairlineitalic-nRgjJ.otf")
+                            mars_weather_pressure_avg.typeface = Typeface.createFromAsset(it.assets,"NegaraserifHairlineitalic-nRgjJ.otf")
+                            mars_season.typeface = Typeface.createFromAsset(it.assets,"NegaraserifHairlineitalic-nRgjJ.otf")
+
+                        }
 
                        mars_weather_date.text = "Дата: "+serverResponseData.Soul767.last_UTC
                         mars_weather_pressure_avg.text = "Давление: "+serverResponseData.Soul767.pRE.av.toString()+" Pa"

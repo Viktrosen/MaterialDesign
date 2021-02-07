@@ -22,6 +22,7 @@ import kotlinx.android.synthetic.main.note_layout.view.*
                 itemView.header.text = header
                 itemView.note_description.text = data[position]
                 itemView.deleteButton.setOnClickListener { removeItem() }
+
         }
 
         private fun addItem() {
